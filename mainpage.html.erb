@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        #messages {
+            display:none;
+        }
+
+
+        table {
+            width: 100%;
+        }
+
+        #game {
+            font-family: Arial;
+            width: 400px;
+            text-align: center
+        }
+
+        i{
+            border-radius: 20px;
+            padding: 10px;
+            transition: 0.2s ease-out;
+            width: 80px;
+            display: inline-block
+        }
+
+
+        }
+
+
+        table {
+            border: 0px solid #000080;
+            box-shadow: 7px 7px 28px 0px rgba(50, 50, 50, 0.6);
+            padding: 7px;
+            border-spacing: 4px;
+            border-radius: 8px 8px 0 0
+        }
+
+        td {
+            border: 0px solid #000080; /*border color of the circle */
+            border-radius: 2000px;
+            box-shadow: inset 7px 7px 20px 0px rgba(50, 50, 50, 0.4);
+            opacity: 1;
+            height: 40px;
+            background: #000000 /*color shade of the circle which is available */
+        }
+
+        button {
+            margin: 30px auto 0
+        }
+
+        #game,
+        table {
+            margin: 30px auto 0
+        }
+        .leg,
+        table {
+            background: #808080
+        }
+
+        td:hover {
+            opacity: 0.6
+        }
+
+        td.Dark,
+        td.Light {
+            box-shadow: inset 0 0 25px rgba(99, 99, 99, 0.7)
+        }
+
+        .Dark:hover,
+        .Light:hover {
+            opacity: 1
+        }
+
+        .Light {
+            background: #FFFFCC
+        }
+
+        .Dark {
+            background: #008000;
+            color: #FFFFFF
+        }
+
+        @media (min-width: 500px) {
+            #game {
+                width: 405px;
+            }
+
+            td {
+                height: 47px;
+                border-width: 1px
+            }
+
+            .leg {
+                width: 13px;
+                height: 60px
+            }
+        }
+
+        @media (min-width: 600px) {
+            #game {
+                width: 503px;
+            }
+
+            td {
+                height: 59px;
+                border-width: 2px
+            }
+
+            .leg {
+                width: 14px;
+                height: 80px
+            }
+
+            button {
+                margin: 30px auto 0;
+                padding: 4px 10px
+            }
+        }
+
+        @media (min-width: 700px) {
+            #game {
+                width: 601px;
+            }
+
+            td {
+                height: 71px;
+                border-width: 3px
+            }
+
+
+            button {
+                padding: 5px 20px
+            }
+
+            td {
+                box-shadow: inset 15px 15px 15px 0px rgba(50, 50, 50, 0.25)
+            }
+
+            td.Dark,
+            td.Light {
+                box-shadow: inset 0 0 20px rgba(99, 99, 99, 0.8)
+            }
+
+
+        }
+
+        @media (max-width: 370px) {
+            #game {
+                width: 249px;
+            }
+
+            td {
+                height: 29px;
+                border-width: 0
+            }
+
+            .leg {
+                width: 8px;
+                height: 40px
+            }
+            button {
+                margin: 10px auto 0
+            }
+
+            td {
+                box-shadow: inset 3px 3px 10px 0px rgba(50, 50, 50, 0.4)
+            }
+
+            td.Dark,
+            td.Light {
+                box-shadow: inset 0 0 10px rgba(99, 99, 99, 0.7)
+            }
+
+            .leg,
+            table {
+                box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.6)
+            }
+        }
+
+        @media (max-width: 280px) {
+            #game {
+                width: 200px;
+            }
+
+            td {
+                height: 22px;
+            }
+
+            * {
+                box-shadow: none!important
+            }
+        }
+
+        </style>
+        <title>Connect Four</title>
+      </head>
+    <body>
+        <div id="game">Current Player Color : <i id="box"></i>
+<div id="messages">
+<span id="player1">Dark</span>
+<span id="player2">Light</span>
+<span id="resetgame">Are you sure you want to play a new game?</span>
+<span id="won">The %s player won.
+Want to play a new game?</span>
+</div>
+            <table>
+                <tr>
+                    <td id="box11"></td>
+                    <td id="box12"></td>
+                    <td id="box13"></td>
+                    <td id="box14"></td>
+                    <td id="box15"></td>
+                    <td id="box16"></td>
+                    <td id="box17"></td>
+                </tr>
+                <tr>
+                    <td id="box21"></td>
+                    <td id="box22"></td>
+                    <td id="box23"></td>
+                    <td id="box24"></td>
+                    <td id="box25"></td>
+                    <td id="box26"></td>
+                    <td id="box27"></td>
+                </tr>
+                <tr>
+                    <td id="box31"></td>
+                    <td id="box32"></td>
+                    <td id="box33"></td>
+                    <td id="box34"></td>
+                    <td id="box35"></td>
+                    <td id="box36"></td>
+                    <td id="box37"></td>
+                </tr>
+                <tr>
+                    <td id="box41"></td>
+                    <td id="box42"></td>
+                    <td id="box43"></td>
+                    <td id="box44"></td>
+                    <td id="box45"></td>
+                    <td id="box46"></td>
+                    <td id="box47"></td>
+                </tr>
+                <tr>
+                    <td id="box51"></td>
+                    <td id="box52"></td>
+                    <td id="box53"></td>
+                    <td id="box54"></td>
+                    <td id="box55"></td>
+                    <td id="box56"></td>
+                    <td id="box57"></td>
+                </tr>
+                <tr>
+                    <td id="box61"></td>
+                    <td id="box62"></td>
+                    <td id="box63"></td>
+                    <td id="box64"></td>
+                    <td id="box65"></td>
+                    <td id="box66"></td>
+                    <td id="box67"></td>
+                </tr>
+            </table>
+
+            <button id="restart">Restart</button>
+        </div>
+          </body>
+<script>
+
+(function (doc, win, onclick, gid, classname, content, showMessage) {
+    var boxnumber, cid, players, shadedbox, finished, resetgameLabel, wonLabel, lastpoint = 1,a, b, c,
+		cellAt = function (ia, ja)
+			{
+                return doc[gid](cid + ia + ja);
+            },
+
+			isshadedboxbox = function (ia, ja)
+			{
+                return cellAt(ia, ja)[classname] === players[shadedbox];
+            },
+            start = function ()
+			{
+                shadedbox = lastpoint = (lastpoint + 1) % 2;
+                finished = 0;
+                boxnumber[content] = boxnumber[classname] = players[shadedbox = (shadedbox + 1) % 2];
+                 for (a = 1; a < 7; a++)
+                    for (b = 1; b < 8; b++)
+                        cellAt(a, b)[classname] = '';
+            },
+            makeMove = function (i, j, s)
+			{
+                s > 0 && (cellAt(s, j)[classname] = '');
+                cellAt(s + 1, j)[classname] = players[shadedbox];
+                s === i - 1 ? function (i, j)
+				{
+                    return function (i, j)
+					{
+                        for (a = j - 1; 0 < a && isshadedboxbox(i, a); a--) {
+                        }
+                        for (b = j + 1; 8 > b && isshadedboxbox(i, b); b++) {
+                        }
+                        return 4 < b - a;
+                    }
+						(i, j) || function (i, j) {
+                        for (c = i + 1; 7 > c && isshadedboxbox(c, j); c++) {
+                        }
+                        return 3 < c - i;
+                    }
+						(i, j) || function (i, j) {
+                        for (a = i - 1, b = j - 1; 0 < a && !(1 > b) && isshadedboxbox(a, b); a--)
+                            b--;
+                        for (c = i + 1, b = j + 1; 7 > c && !(7 < b) && isshadedboxbox(c, b); c++)
+                            b++;
+                        return 4 < c - a
+                    }
+						(i, j) || function (i, j)
+						{
+                        for (a = i - 1, b = j + 1; 0 < a && !(7 < b) && isshadedboxbox(a, b); a--)
+                            b++;
+                        for (c = i + 1, b = j - 1; 7 > c && !(1 > b) && isshadedboxbox(c, b); c++)
+                            b--;
+                        return 4 < c - a;
+                    }
+						(i, j);
+				}(i, j)
+                        ? finished = 1 && win[showMessage](doc[gid](wonLabel)[content].replace("%s", players[shadedbox].toUpperCase())) && start()
+                        : boxnumber[content] = boxnumber[classname] = players[shadedbox = (shadedbox + 1) % 2]
+                        : setTimeout(function ()
+						{
+                            makeMove(i, j, s + 1)
+                        }, 20);
+
+            };
+
+    return function (resetgame, wongame, colorid, haltgame, player1, player2)
+		{
+			cid = colorid;
+			resetgameLabel = resetgame;
+			wonLabel = wongame;
+			boxnumber = doc[gid](colorid);
+			players = [doc[gid](player1)[content], doc[gid](player2)[content]];
+			for (a = 1; a < 7; a++)
+            for (b = 1; b < 8; b++)
+                cellAt(a, b)[onclick] = function (b, a) {
+                    return function () {
+                        if (!finished)
+                            for (a = 6; a > 0; a--)
+                                if (!cellAt(a, b)[classname]) {
+                                    makeMove(a, b, 0);
+                                    break;
+                                }
+                    };
+                }
+					(b);
+        ;
+        doc[gid](haltgame)[onclick] = function () {
+            win[showMessage](doc[gid](resetgameLabel)[content]) && start()
+        };
+        start();
+    };
+})(document, window, "onclick", "getElementById", "className", "innerHTML", "confirm")("resetgame", "won", "box", "restart", "player1", "player2");
+</script>
+
+</html>
